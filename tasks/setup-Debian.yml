@@ -1,0 +1,34 @@
+---
+- name: Mount efs
+  mount:
+    state: mounted
+    path: /efs
+    opts: noauto,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev
+    fstype: nfs4
+    src: fs-727b3b3b.efs.us-east-1.amazonaws.com:/
+
+- name: Make required directories
+  file:
+    state: directory
+    mode: 0755
+    path: '{{ item }}'
+  loop:
+    - /efs/{{ distro_name }}
+    - /efs/{{ distro_name }}/scons-cache
+    - /efs/{{ distro_name }}/info
+
+- name: Copy disto name
+  template:
+    src: mongodb-distro-name
+    dest: /efs/{{ distro_name }}/info/{{ distro_name }}
+
+# If we are a patch build, stamp directory with is_patch for future cleanup
+- name: Create is_patch file
+  file:
+    state: touch
+    owner: root
+    group: root
+    mode: 0655
+    path: '/efs/{{ distro_name }}/info/is_patch'
+  when:
+    - is_patch != ''
