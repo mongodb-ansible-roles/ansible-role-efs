@@ -15,7 +15,9 @@ Role Variables
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
-| name | desc | type | default | required |
+| efs\_src | Source directory to mount to EFS | string | "" | yes |
+| efs\_mount\_options | Options to mount directory with | string | "" | yes |
+| efs\_fstype | File system type to mount as | string | "" | yes |
 
 Dependencies
 ------------
@@ -30,6 +32,9 @@ Example Playbook
   roles:
     - role: ansible-role-efs
       vars:
+        efs_src: /tmp/efs
+        efs_mount_options: bind
+        efs_fstype: none
 ```
 
 Development
