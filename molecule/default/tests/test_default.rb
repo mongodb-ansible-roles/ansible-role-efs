@@ -2,8 +2,8 @@
 
 describe mount('/efs') do
   it { should be_mounted }
-  its('device') { should eq 'overlay' }
-  its('type') { should eq 'overlay' }
+  its('device') { should eq 'none' }
+  its('type') { should eq 'aufs' }
 end
 
 describe file('/efs/test') do
