@@ -1,11 +1,26 @@
 ---
+- name: Ensure the /efs directory exists
+  file:
+    path: /efs
+    state: directory
+
+- name: Copy efs id files
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - src: mongodb-build-system-id
+      dest: /etc/mongodb-build-system-id
+    - src: mongodb-distro-name
+      dest: /etc/mongodb-distro-name
+
 - name: Mount efs
   mount:
     state: mounted
-    path: /efs
-    opts: noauto,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,_netdev
-    fstype: nfs4
-    src: fs-727b3b3b.efs.us-east-1.amazonaws.com:/
+    path: "{{ efs_path }}"
+    opts: "{{ efs_mount_options }}"
+    fstype: "{{ efs_fstype }}"
+    src: "{{ efs_src }}"
 
 - name: Make required directories
   file:
@@ -13,14 +28,14 @@
     mode: 0755
     path: '{{ item }}'
   loop:
-    - /efs/{{ distro_name }}
-    - /efs/{{ distro_name }}/scons-cache
-    - /efs/{{ distro_name }}/info
+    - /efs/{{ build_system_id }}
+    - /efs/{{ build_system_id }}/scons-cache
+    - /efs/{{ build_system_id }}/info
 
 - name: Copy disto name
   template:
     src: mongodb-distro-name
-    dest: /efs/{{ distro_name }}/info/{{ distro_name }}
+    dest: /efs/{{ build_system_id }}/info/distro_name
 
 # If we are a patch build, stamp directory with is_patch for future cleanup
 - name: Create is_patch file
@@ -29,6 +44,6 @@
     owner: root
     group: root
     mode: 0655
-    path: '/efs/{{ distro_name }}/info/is_patch'
+    path: '/efs/{{ build_system_id }}/info/is_patch'
   when:
-    - is_patch != ''
+    - is_patch | default(false)
