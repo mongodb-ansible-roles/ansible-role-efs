@@ -1,8 +1,6 @@
 ---
 jobs:
   release:
-    env:
-      GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,6 +12,8 @@ jobs:
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git@7.0.18
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 name: Release
 on:
   push:
