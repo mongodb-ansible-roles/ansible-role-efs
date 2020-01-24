@@ -3,8 +3,8 @@ Ansible role for efs
 
 Mounts EFS directory
 
-![](https://github.com/mongodb-ansible-roles/ansible-role-efs/workflows/Molecule%20Test/badge.svg)
-![](https://github.com/mongodb-ansible-roles/ansible-role-efs/workflows/Release/badge.svg)
+[![GitHub Actions](https://github.com/mongodb-ansible-roles/ansible-role-efs/workflows/Molecule%20Test/badge.svg)](https://github.com/mongodb-ansible-roles/ansible-role-efs/actions?query=workflow%3ARelease)
+[![GitHub Actions](https://github.com/mongodb-ansible-roles/ansible-role-efs/workflows/Release/badge.svg)](https://github.com/mongodb-ansible-roles/ansible-role-efs/actions?query=workflow%3A%22Molecule+Test%22)
 
 Requirements
 ------------
