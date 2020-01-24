@@ -1,0 +1,7 @@
+---
+- gather_facts: true
+  name: Unsubscribe RHEL6
+  hosts: rhel6
+  tasks:
+    - name: Unsubscribe container
+      command: subscription-manager unregister
