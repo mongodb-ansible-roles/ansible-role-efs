@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/mongodb-ansible-roles/ansible-role-efs/compare/v1.1.0...v1.2.0) (2020-01-24)
+
+
+### Features
+
+* Added multiple platforms ([8306894](https://github.com/mongodb-ansible-roles/ansible-role-efs/commit/830689464264fc806ca2fce493a9767d2c4bf6ce))
+
 # [1.1.0](https://github.com/mongodb-ansible-roles/ansible-role-efs/compare/v1.0.0...v1.1.0) (2020-01-15)
 
 
