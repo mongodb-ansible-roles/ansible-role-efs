@@ -16,6 +16,7 @@ Role Variables
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-------:|:--------:|
+| efs\_directory\_owner | Directory owner | string | "" | yes |
 | efs\_src | Source directory to mount to EFS | string | "" | yes |
 | efs\_mount\_options | Options to mount directory with | string | "" | yes |
 | efs\_fstype | File system type to mount as | string | "" | yes |

@@ -5,6 +5,7 @@
   roles:
     - role: ansible-role-efs
       vars:
+        efs_directory_owner: root
         efs_src: /tmp/efs
         efs_mount_options: bind
         efs_fstype: none

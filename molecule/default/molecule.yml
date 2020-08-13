@@ -3,8 +3,11 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
 platforms:
   - name: debian9
     image: debian:9
@@ -18,16 +21,9 @@ platforms:
   - name: rhel7
     image: registry.redhat.io/ubi7
     privileged: true
-  - name: rhel6
-    image: registry.redhat.io/rhel6
-    privileged: true
 playbooks:
   side_effect: side_effect.yml
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8

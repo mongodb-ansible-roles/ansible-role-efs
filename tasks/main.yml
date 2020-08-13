@@ -24,6 +24,7 @@
 
 - name: Make required directories
   file:
+    owner: "{{ efs_directory_owner }}"
     state: directory
     mode: 0755
     path: '{{ item }}'
