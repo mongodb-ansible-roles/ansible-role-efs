@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/mongodb-ansible-roles/ansible-role-efs/compare/v1.2.0...v1.3.0) (2020-08-13)
+
+
+### Features
+
+* Specify the Owner of the EFS directory ([#7](https://github.com/mongodb-ansible-roles/ansible-role-efs/issues/7)) ([6ef3d1f](https://github.com/mongodb-ansible-roles/ansible-role-efs/commit/6ef3d1f13aa789d8f604ee463e3ea3ad4b67d70b))
+
 # [1.2.0](https://github.com/mongodb-ansible-roles/ansible-role-efs/compare/v1.1.0...v1.2.0) (2020-01-24)
 
 
