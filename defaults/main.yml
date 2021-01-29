@@ -1,5 +1,6 @@
 ---
 efs_directory_owner: ""
+efs_in_container: false
 efs_src: ""
 efs_mount_options: ""
 efs_fstype: ""

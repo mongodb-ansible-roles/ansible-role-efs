@@ -22,9 +22,11 @@
     - name: Create temp efs directory
       file:
         path: /tmp/efs
+        mode: 0755
         state: directory
 
     - name: Create temp file in efs directory
       file:
         path: /tmp/efs/test
+        mode: 0755
         state: touch

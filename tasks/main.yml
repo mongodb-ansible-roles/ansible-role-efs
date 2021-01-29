@@ -2,17 +2,27 @@
 - name: Ensure the /efs directory exists
   file:
     path: /efs
+    mode: 0755
     state: directory
 
 - name: Copy efs id files
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
+    mode: 0644
   loop:
     - src: mongodb-build-system-id
       dest: /etc/mongodb-build-system-id
     - src: mongodb-distro-name
       dest: /etc/mongodb-distro-name
+
+- name: Add EFS DNS name to hosts file
+  lineinfile:
+    insertafter: EOF
+    line: 10.122.90.191 fs-727b3b3b.efs.us-east-1.amazonaws.com
+    path: /etc/hosts
+    state: present
+  when: not efs_in_container
 
 - name: Mount efs
   mount:
@@ -21,6 +31,13 @@
     opts: "{{ efs_mount_options }}"
     fstype: "{{ efs_fstype }}"
     src: "{{ efs_src }}"
+
+- name: Remove EFS DNS name from hosts file
+  lineinfile:
+    line: 10.122.90.191 fs-727b3b3b.efs.us-east-1.amazonaws.com
+    path: /etc/hosts
+    state: absent
+  when: not efs_in_container
 
 - name: Make required directories
   file:
@@ -37,6 +54,7 @@
   template:
     src: mongodb-distro-name
     dest: /efs/{{ build_system_id }}/info/distro_name
+    mode: 0644
 
 # If we are a patch build, stamp directory with is_patch for future cleanup
 - name: Create is_patch file
