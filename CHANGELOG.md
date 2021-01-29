@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/mongodb-ansible-roles/ansible-role-efs/compare/v1.3.0...v1.3.1) (2021-01-29)
+
+
+### Bug Fixes
+
+* Temporarily add EFS DNS to hosts file ([#8](https://github.com/mongodb-ansible-roles/ansible-role-efs/issues/8)) ([4fbde27](https://github.com/mongodb-ansible-roles/ansible-role-efs/commit/4fbde2790db0a8e7d2ac03c54c3e71aa5120f5a7))
+
 # [1.3.0](https://github.com/mongodb-ansible-roles/ansible-role-efs/compare/v1.2.0...v1.3.0) (2020-08-13)
 
 
